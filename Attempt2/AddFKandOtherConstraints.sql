@@ -15,4 +15,4 @@ ADD CONSTRAINT [fk_prices_assets] FOREIGN KEY ([Asset_ID])
 REFERENCES [PRACTICE2].[Assets] ([AssetID]);
 
 ALTER TABLE [PRACTICE2].[Assets]
-ADD CONSTRAINT [chk_asset_type] CHECK ([Asset_Type] IN ('Equity', 'Bond', 'Commodity', 'Currency', 'Mutual Fund', 'ETF', 'Option', 'Future'));
+ADD CONSTRAINT [chk_asset_type] CHECK ([Asset_Type] IN ('Equity', 'Bond', 'Commodity', 'Currency', 'Mutual Fund', 'ETF', 'Option', 'Future','Cryptocurrency'));

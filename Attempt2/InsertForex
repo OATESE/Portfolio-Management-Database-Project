@@ -1,0 +1,16 @@
+INSERT INTO [PRACTICE2].[Assets] (Asset_Type, Symbol, Asset_Name, Industry)
+VALUES 
+('Currency', 'EURUSD=X', 'Euro to US Dollar', 'Forex'),
+('Currency', 'USDJPY=X', 'US Dollar to Japanese Yen', 'Forex'),
+('Currency', 'GBPUSD=X', 'British Pound to US Dollar', 'Forex'),
+('Currency', 'AUDUSD=X', 'Australian Dollar to US Dollar', 'Forex'),
+('Currency', 'NZDUSD=X', 'New Zealand Dollar to US Dollar', 'Forex'),
+('Currency', 'USDCAD=X', 'US Dollar to Canadian Dollar', 'Forex'),
+('Currency', 'USDCHF=X', 'US Dollar to Swiss Franc', 'Forex'),
+('Currency', 'USDNOK=X', 'US Dollar to Norwegian Krone', 'Forex'),
+('Currency', 'USDSEK=X', 'US Dollar to Swedish Krona', 'Forex'),
+('Cryptocurrency', 'BTC-USD', 'Bitcoin', 'Cryptocurrency'),
+('Cryptocurrency', 'ETH-USD', 'Ethereum', 'Cryptocurrency'),
+('Cryptocurrency', 'XRP-USD', 'Ripple', 'Cryptocurrency'),
+('Cryptocurrency', 'LTC-USD', 'Litecoin', 'Cryptocurrency'),
+('Cryptocurrency', 'BCH-USD', 'Bitcoin Cash', 'Cryptocurrency');
