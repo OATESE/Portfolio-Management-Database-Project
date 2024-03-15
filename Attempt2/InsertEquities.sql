@@ -1,4 +1,4 @@
-INSERT INTO [PRACTICE].[Assets] (AssetType, Symbol, Industry)
+INSERT INTO [PRACTICE2].[Assets] (Asset_Type, Symbol, Industry)
 VALUES 
 ('Equity', 'AAPL', 'Technology'),
 ('Equity', 'MSFT', 'Technology'),
