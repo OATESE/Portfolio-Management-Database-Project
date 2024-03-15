@@ -22,7 +22,6 @@ CREATE TABLE [PRACTICE2].[Assets] (
     [Symbol] VARCHAR(10) NOT NULL,
     [Asset_Name] VARCHAR(100),
     [Industry] VARCHAR(100),
-    [Income_providing] BIT,
     CONSTRAINT [pk_assets] PRIMARY KEY ([AssetID])
 );
 
