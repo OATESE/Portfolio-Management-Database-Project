@@ -19,3 +19,11 @@ ADD CONSTRAINT [chk_asset_type] CHECK ([Asset_Type] IN ('Equity', 'Bond', 'Commo
 
 ALTER TABLE [PRACTICE2].[Assets]
 ADD CONSTRAINT [uc_symbol] UNIQUE ([Symbol]);
+
+ALTER TABLE [PRACTICE2].[Clients]
+ADD CONSTRAINT [chk_client_email_format] CHECK (
+    Client_Email LIKE '%@%.%' AND
+    Client_Email NOT LIKE '%@%@%' AND
+    Client_Email NOT LIKE '%..%' AND
+    LEN(Client_Email) - LEN(REPLACE(Client_Email, '@', '')) = 1
+);
