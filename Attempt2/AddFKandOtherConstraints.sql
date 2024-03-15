@@ -16,3 +16,6 @@ REFERENCES [PRACTICE2].[Assets] ([AssetID]);
 
 ALTER TABLE [PRACTICE2].[Assets]
 ADD CONSTRAINT [chk_asset_type] CHECK ([Asset_Type] IN ('Equity', 'Bond', 'Commodity', 'Currency', 'Mutual Fund', 'ETF', 'Option', 'Future','Cryptocurrency'));
+
+ALTER TABLE [PRACTICE2].[Assets]
+ADD CONSTRAINT [uc_symbol] UNIQUE ([Symbol]);
