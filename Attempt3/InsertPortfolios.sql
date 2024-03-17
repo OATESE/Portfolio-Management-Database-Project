@@ -1,4 +1,3 @@
-User
 INSERT INTO [YourSchema].[Portfolios] 
     (Client_ID, Portfolio_Name, Portfolio_Description, Portfolio_Purpose, Portfolio_Init_Date)
 VALUES 
