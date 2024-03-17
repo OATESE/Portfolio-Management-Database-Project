@@ -33,7 +33,7 @@ def generate_positions(client_portfolio_dict, asset_symbols, start_date, end_dat
         for portfolio_id in portfolio_ids:
             for _ in range(num_positions_per_portfolio):
                 asset_symbol = random.choice(asset_symbols)
-                quantity = random.randint(1, 100)  # example quantity range
+                quantity = random.randint(1, 1000)  # example quantity range
                 purchase_date = random.choice(random_dates(start_date, end_date, 1))        
                 position = (portfolio_id, client_id, asset_symbol, quantity, purchase_date)
                 positions.append(position)
