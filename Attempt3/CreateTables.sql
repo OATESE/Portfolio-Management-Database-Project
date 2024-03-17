@@ -31,8 +31,8 @@ CREATE TABLE [PRACTICE3].[Positions] (
     [Asset_Symbol] VARCHAR(10) NOT NULL,
     [Quantity] DECIMAL(19,4) NOT NULL,
     [PurchaseDate] DATE NOT NULL,
-    [PurchasePrice] DECIMAL(19,4) NOT NULL,
-    [CurrentPrice] DECIMAL(19,4) NOT NULL,
+    [PurchasePrice] DECIMAL(19,4) NULL,
+    [CurrentPrice] DECIMAL(19,4) NULL,
     CONSTRAINT [pk_positions] PRIMARY KEY ([Position_ID])
 );
 

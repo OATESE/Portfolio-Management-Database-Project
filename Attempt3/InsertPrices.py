@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-# Example usage
+#usage
 symbols = [
     'AAPL', 'ABBV', 'AMD', 'AMZN', 'AUDUSD=X', 'BAC', 'BCH-USD', 'BTC-USD',
     'C', 'CL=F', 'COP', 'CVX', 'EEM', 'EOG', 'ETH-USD', 'EURUSD=X',
