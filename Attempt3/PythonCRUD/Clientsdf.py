@@ -1,6 +1,10 @@
 import pandas as pd
 import pyodbc
 
+##Client Name
+client_name = 'John Doe'
+
+
 # Database connection parameters
 server = 'tcp:mcruebs04.isad.isadroot.ex.ac.uk'
 database = 'BEM2040_EOATES'
@@ -19,7 +23,7 @@ connection_string = f'''
 '''
 
 # SQL query
-client_name = 'Alex Johnson'
+
 sql_query = f'''
 SELECT
     p.Portfolio_ID,
@@ -73,6 +77,17 @@ for portfolio_id in portfolio_ids:
     portfolio_df = df[df['Portfolio_ID'] == portfolio_id]
     portfolio_name = portfolio_df['Portfolio_Name'].iloc[0]
 
+    # Calculate ROI for the most recent date
+    # Ensure the DataFrame is sorted by Date if it's not already
+    portfolio_df = portfolio_df.sort_values(by='Date')
+    most_recent_portfolio_value = portfolio_df['Portfolio_Value'].iloc[-1]
+    most_recent_invested_amount = portfolio_df['Amount_Invested_Up_To_Date'].iloc[-1]
+    if most_recent_invested_amount > 0:  # Prevent division by zero
+        roi = (most_recent_portfolio_value / most_recent_invested_amount) - 1
+        roi_percentage = roi * 100  # Convert to percentage
+    else:
+        roi_percentage = 0
+
     # Create a new figure for each portfolio
     plt.figure(figsize=(10, 6))
     
@@ -90,5 +105,10 @@ for portfolio_id in portfolio_ids:
     plt.legend()
     plt.tight_layout()
     
+    # Annotating ROI on the most recent date
+    plt.annotate(f'ROI: {roi_percentage:.2f}%', xy=(1, 0), xycoords='axes fraction', fontsize=12,
+                 xytext=(-10, 10), textcoords='offset points',
+                 ha='right', va='bottom')
+
     # Show plot
     plt.show()
