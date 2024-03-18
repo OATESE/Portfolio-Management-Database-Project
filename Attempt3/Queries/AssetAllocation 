@@ -12,7 +12,7 @@ JOIN
 JOIN 
     [PRACTICE3].[Prices] pr ON a.AssetSymbol = pr.Asset_Symbol AND pr.Date = '2023-02-28' -- Use the most recent date for valuation
 WHERE 
-    c.Client_Name = 'Alex Johnson'
+    c.Client_Name = 'John Doe'
 GROUP BY 
     a.Asset_Type;
 
