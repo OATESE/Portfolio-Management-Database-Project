@@ -1,10 +1,5 @@
 import pandas as pd
 import pyodbc
-import warnings 
-
-# Settings the warnings to be ignored 
-warnings.filterwarnings('ignore') 
-
 
 # Database connection parameters
 server = 'tcp:mcruebs04.isad.isadroot.ex.ac.uk'
@@ -12,80 +7,88 @@ database = 'BEM2040_EOATES'
 username = 'EOates'
 password = 'DtyV133*831*'
 
-# Connection string for pyodbc
-connection_string = f"DRIVER={{ODBC Driver 18 for SQL Server}};" \
-                    f"SERVER={server};" \
-                    f"DATABASE={database};" \
-                    f"UID={username};" \
-                    f"PWD={password};" \
-                    "TrustServerCertificate=yes;" \
-                    "Encrypt=no;"
-
-# Create a connection object using pyodbc
-cnxn = pyodbc.connect(connection_string)
-
-# Define the SQL query
-client_name = 'John Doe'
-portfolios_summary_sql = f'''
-WITH PortfolioInitialValues AS (
-    SELECT
-        p.Portfolio_ID,
-        MIN(pr.Date) AS Init_Date
-    FROM
-        [PRACTICE3].[Clients] c
-    JOIN
-        [PRACTICE3].[Portfolios] p ON c.Client_ID = p.Client_ID
-    JOIN
-        [PRACTICE3].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
-    JOIN
-        [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
-    WHERE
-        c.Client_Name = '{client_name}'
-    GROUP BY
-        p.Portfolio_ID
-),
-PortfolioCurrentValues AS (
-    SELECT
-        p.Portfolio_ID,
-        p.Portfolio_Name,
-        MAX(pr.Date) AS Latest_Date,
-        SUM(pos.Quantity * pr.Price_Close) AS Current_Value
-    FROM
-        [PRACTICE3].[Clients] c
-    JOIN
-        [PRACTICE3].[Portfolios] p ON c.Client_ID = p.Client_ID
-    JOIN
-        [PRACTICE3].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
-    JOIN
-        [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
-    WHERE
-        c.Client_Name = '{client_name}'
-    GROUP BY
-        p.Portfolio_ID, p.Portfolio_Name
-)
-SELECT
-    cv.Portfolio_ID,
-    cv.Portfolio_Name,
-    cv.Latest_Date,
-    cv.Current_Value,
-    piv.Init_Date,
-    (SELECT SUM(pos.Quantity * pr.Price_Close)
-     FROM [PRACTICE3].[Positions] pos
-     JOIN [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol AND pr.Date = piv.Init_Date
-     WHERE pos.Portfolio_ID = cv.Portfolio_ID) AS Initial_Value
-FROM
-    PortfolioCurrentValues cv
-JOIN
-    PortfolioInitialValues piv ON cv.Portfolio_ID = piv.Portfolio_ID
+# Connect to the database
+connection_string = f'''
+    DRIVER={{ODBC Driver 18 for SQL Server}};
+    SERVER={server};
+    DATABASE={database};
+    UID={username};
+    PWD={password};
+    TrustServerCertificate=yes;
+    Encrypt=no;
 '''
 
-# Use pandas read_sql_query function to execute the query and fetch the results into a DataFrame
-df = pd.read_sql_query(portfolios_summary_sql, cnxn)
-df.info()
-# Display the DataFrame
-print(df.head())
+# SQL query
+client_name = 'Alex Johnson'
+sql_query = f'''
+SELECT
+    p.Portfolio_ID,
+    p.Portfolio_Name,
+    pr.Date,
+    SUM(pos.Quantity * pr.Price_Close) AS Portfolio_Value,
+    SUM(CASE WHEN pos.PurchaseDate <= pr.Date THEN pos.Quantity * pos.PurchasePrice ELSE 0 END) AS Amount_Invested_Up_To_Date
+FROM
+    [PRACTICE3].[Clients] c
+JOIN
+    [PRACTICE3].[Portfolios] p ON c.Client_ID = p.Client_ID
+JOIN
+    [PRACTICE3].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
+JOIN
+    [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol AND pos.PurchaseDate <= pr.Date
+WHERE
+    c.Client_Name = '{client_name}'
+GROUP BY
+    p.Portfolio_ID, p.Portfolio_Name, pr.Date
+ORDER BY
+    p.Portfolio_ID, pr.Date;
+'''
 
-# Don't forget to close the connection
-cnxn.close()
+try:
+    # Establishing connection
+    cnxn = pyodbc.connect(connection_string)
+    print("Connected to the database successfully.")
+
+    # Executing the query and loading into a DataFrame
+    df = pd.read_sql_query(sql_query, cnxn)
+
+    # Displaying the DataFrame
+    print(df)
+
+except Exception as e:
+    print(f"Error: {e}")
+finally:
+    # Ensuring the connection is closed
+    cnxn.close()
 
 
+import matplotlib.pyplot as plt
+
+# Assuming 'df' is your DataFrame from the previous code
+
+# Get unique portfolio IDs
+portfolio_ids = df['Portfolio_ID'].unique()
+
+# Create a plot for each portfolio ID
+for portfolio_id in portfolio_ids:
+    portfolio_df = df[df['Portfolio_ID'] == portfolio_id]
+    portfolio_name = portfolio_df['Portfolio_Name'].iloc[0]
+
+    # Create a new figure for each portfolio
+    plt.figure(figsize=(10, 6))
+    
+    # Plotting portfolio value
+    plt.plot(portfolio_df['Date'], portfolio_df['Portfolio_Value'], marker='', color='blue', linewidth=2.5, label='Portfolio Value')
+    
+    # Plotting amount invested up to date
+    plt.plot(portfolio_df['Date'], portfolio_df['Amount_Invested_Up_To_Date'], marker='', color='red', linewidth=2.5, linestyle='dashed', label='Amount Invested Up To Date')
+    
+    # Customizing the plot
+    plt.title(f'Portfolio Value and Amount Invested Over Time\n{portfolio_name} (ID: {portfolio_id})')
+    plt.xlabel('Date')
+    plt.ylabel('Value')
+    plt.xticks(rotation=45)
+    plt.legend()
+    plt.tight_layout()
+    
+    # Show plot
+    plt.show()
