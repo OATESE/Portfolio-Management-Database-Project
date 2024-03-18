@@ -19,7 +19,7 @@ try:
 except Exception as e:
     print("Error connecting to the database:", e)
     exit()
-
+    
 client_name = 'John Doe'  # Client name to search for
 
 Portfolios_Summary = f'''
