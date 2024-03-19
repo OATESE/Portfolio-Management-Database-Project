@@ -1,4 +1,4 @@
-# SQL Files, Database Schema for CW1
+# SQL Files & Database Schema Setup for CW1
 
 This repository contains a series of SQL scripts used to set up the database schema for the CW1 financial portfolio management system. Below is an outline of each file and its purpose.
 
