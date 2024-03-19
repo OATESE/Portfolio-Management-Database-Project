@@ -19,6 +19,8 @@ Provides the initial asset positions within each client's portfolio. This script
 ### InsertPrices.sql
 Contains historical price data for the various assets within the system. This is crucial for calculating portfolio values over time. This is real data retreived from yahoo finance. The data was downloaded then written into sql insert statements using the python (file link here)
 
+## Other Files
+
 ### AssetAllocationView.sql
 Creates a view in the database that presents the asset allocation of each portfolio, showing the distribution of asset types across a portfolio for each date.
 
