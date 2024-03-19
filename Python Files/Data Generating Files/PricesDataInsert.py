@@ -10,7 +10,7 @@ symbols = [
     'USDJPY=X', 'USDNOK=X', 'USDSEK=X', 'VEA', 'VGLT', 'VTI', 'XOM', 'XRP-USD'
 ]
 start_date = '2023-01-01'
-end_date = '2023-12-31'
+end_date = '2024-3-19'
 def download_prices_for_symbols(symbols, start_date, end_date):
     all_data = []  # A list to hold data from each symbol
     
