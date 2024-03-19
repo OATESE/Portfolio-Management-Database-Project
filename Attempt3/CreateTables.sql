@@ -1,7 +1,7 @@
 CREATE TABLE [PRACTICE3].[Clients] (
     [Client_ID] INT IDENTITY(1,1) NOT NULL,
     [Client_Name] VARCHAR(255) NOT NULL,
-    [Client_Address] VARCHAR(255),
+    [Client_Email] VARCHAR(255),
     [Client_Number] VARCHAR(50),
     CONSTRAINT [pk_clients] PRIMARY KEY ([Client_ID])
 );
