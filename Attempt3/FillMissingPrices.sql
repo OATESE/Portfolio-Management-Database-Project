@@ -67,3 +67,5 @@ BEGIN
     CLOSE AssetCursor;
     DEALLOCATE AssetCursor;
 END
+
+EXEC FillMissingPrices;
