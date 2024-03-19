@@ -36,22 +36,19 @@ BEGIN
         WHILE @@FETCH_STATUS = 0
         BEGIN
             -- Check if price exists for the current asset on the current date
-            IF NOT EXISTS (SELECT 1 FROM [CW1
-    ].[Prices] WHERE Asset_Symbol = @CurrentAsset AND Date = @CurrentDate)
+            IF NOT EXISTS (SELECT 1 FROM [CW1].[Prices] WHERE Asset_Symbol = @CurrentAsset AND Date = @CurrentDate)
             BEGIN
                 -- Find the most recent price before @CurrentDate for @CurrentAsset
                 DECLARE @MostRecentPrice DECIMAL(19, 4);
                 SELECT TOP 1 @MostRecentPrice = Price_Close
-                FROM [CW1
-        ].[Prices]
+                FROM [CW1].[Prices]
                 WHERE Asset_Symbol = @CurrentAsset AND Date < @CurrentDate
                 ORDER BY Date DESC;
 
                 -- Insert the most recent price for the missing date, replicating for Open, High, Low, and using a default for Volume if necessary
                 IF @MostRecentPrice IS NOT NULL
                 BEGIN
-                    INSERT INTO [CW1
-            ].[Prices] 
+                    INSERT INTO [CW1].[Prices] 
                     (Asset_Symbol, Date, Price_Open, Price_High, Price_Low, Price_Close, Volume)
                     VALUES 
                     (@CurrentAsset, @CurrentDate, @MostRecentPrice, @MostRecentPrice, @MostRecentPrice, @MostRecentPrice, 0); -- Assuming '0' as a default value for Volume
@@ -70,5 +67,3 @@ BEGIN
     CLOSE AssetCursor;
     DEALLOCATE AssetCursor;
 END
-
-EXEC WeekendPrices;
