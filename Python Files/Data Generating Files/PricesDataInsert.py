@@ -1,7 +1,16 @@
 import yfinance as yf
 import pandas as pd
-
-
+#usage
+symbols = [
+    'AAPL', 'ABBV', 'AMD', 'AMZN', 'AUDUSD=X', 'BAC', 'BCH-USD', 'BTC-USD',
+    'C', 'CL=F', 'COP', 'CVX', 'EEM', 'EOG', 'ETH-USD', 'EURUSD=X',
+    'GBPUSD=X', 'GC=F', 'GILD', 'GM', 'GOOGL', 'GS', 'HD', 'HYG', 'JNJ',
+    'JPM', 'LTC-USD', 'MRK', 'MS', 'MSFT', 'NG=F', 'NKE', 'NVDA', 'NZDUSD=X',
+    'PFE', 'QQQ', 'SI=F', 'SLB', 'SPY', 'TSLA', 'USDCAD=X', 'USDCHF=X',
+    'USDJPY=X', 'USDNOK=X', 'USDSEK=X', 'VEA', 'VGLT', 'VTI', 'XOM', 'XRP-USD'
+]
+start_date = '2023-01-01'
+end_date = '2023-12-31'
 def download_prices_for_symbols(symbols, start_date, end_date):
     all_data = []  # A list to hold data from each symbol
     
@@ -28,37 +37,30 @@ def download_prices_for_symbols(symbols, start_date, end_date):
     
     return combined_data
 
-# Display the combined DataFrame to verify
-
-#usage
-symbols = ['AAPL', 'MSFT', 'GOOGL']
-start_date = '2023-01-01'
-end_date = '2023-3-18'
 prices_df = download_prices_for_symbols(symbols, start_date, end_date)
-
-#prices_df
 
 def df_to_batch_insert_sql(df, table_name, schema_name='dbo'):
     grouped_df = df.groupby('Asset_Symbol')
     insert_stmts = []
-    
+
     for symbol, group in grouped_df:
-        cols = ', '.join([f"[{col}]" for col in group.columns])
+        # We don't need to reorder or rename since the DataFrame already matches the database schema.
         vals_list = []
         for index, row in group.iterrows():
-            vals = ', '.join([f"'{row[col]}'" if isinstance(row[col], str)
-                              else ("CONVERT(DATE, '" + str(row[col])[:10] + "', 120)" if col == 'Date' 
-                                    else str(row[col])) for col in group.columns])
+            # Ensure the date is formatted as a string 'YYYY-MM-DD'
+            date_str = row['Date'].strftime('%Y-%m-%d')
+            # Prepare the value strings, making sure to format the date correctly
+            vals = f"'{symbol}', '{date_str}', {row['Open']}, {row['High']}, {row['Low']}, {row['Close']}, {row['Volume']}"
             vals_list.append(f"({vals})")
         vals_str = ',\n'.join(vals_list)
-        stmt = f"INSERT INTO [{schema_name}].[{table_name}] ({cols}) VALUES \n{vals_str};"
+        stmt = f"INSERT INTO [{schema_name}].[{table_name}] ([Asset_Symbol], [Date], [Price_Open], [Price_High], [Price_Low], [Price_Close], [Volume]) VALUES \n{vals_str};"
         insert_stmts.append(stmt)
     
     return insert_stmts
 
 # Assuming prices_df is your DataFrame from the previous function
 table_name = 'Prices'
-schema_name = 'PRACTICE3'
+schema_name = 'CW1'
 sql_statements = df_to_batch_insert_sql(prices_df, table_name, schema_name)
 
 # Print the SQL insert statements
