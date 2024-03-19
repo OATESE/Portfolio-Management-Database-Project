@@ -1,11 +1,11 @@
-INSERT INTO [YourSchema].[Portfolios] 
+INSERT INTO [CW1] . [Portfolios] 
     (Client_ID, Portfolio_Name, Portfolio_Description, Portfolio_Purpose, Portfolio_Init_Date)
 VALUES 
     (1, 'Growth Fund', 'A portfolio focused on capital appreciation', 'Long-term growth', '2023-01-05'),
     (2, 'Income Portfolio', 'Designed to provide regular income through dividends and interest', 'Income generation', '2023-01-12'),
     (3, 'Retirement Fund', 'A conservative mix of assets for a nearing retirement investor', 'Preservation of capital', '2023-01-20'),
     (4, 'Tech Leaders', 'Comprises leading technology companies for high growth potential', 'Aggressive growth', '2023-02-01'),
-    (5, 'Balanced Approach', 'A balanced mix of equities and bonds for moderate risk', 'Balanced risk and return', '2023-02-15');
+    (5, 'Balanced Approach', 'A balanced mix of equities and bonds for moderate risk', 'Balanced risk and return', '2023-02-15'),
     (6, 'Emerging Markets', 'Invests in rapidly growing countries for high potential returns', 'Growth', '2023-01-18'),
     (7, 'Real Estate Investment', 'Focused on real estate assets to diversify and hedge against inflation', 'Diversification', '2023-02-05'),
     (8, 'Commodity Focus', 'Investment in commodities like gold and oil for market hedging', 'Hedging', '2023-01-25'),
@@ -18,7 +18,7 @@ VALUES
     (15, 'Defensive Stocks', 'Focuses on companies with consistent earnings, less sensitive to market cycles', 'Low risk', '2023-02-02');
 
 -- For clients with 2 portfolios, adding second portfolios
-INSERT INTO [PRACTICE3].[Portfolios] 
+INSERT INTO [CW1] . [Portfolios] 
     (Client_ID, Portfolio_Name, Portfolio_Description, Portfolio_Purpose, Portfolio_Init_Date)
 VALUES 
     (3, 'Fixed Income', 'Invests primarily in government and corporate debt', 'Income', '2023-02-18'),

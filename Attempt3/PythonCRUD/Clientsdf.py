@@ -67,7 +67,6 @@ finally:
 
 import matplotlib.pyplot as plt
 
-# Assuming 'df' is your DataFrame from the previous code
 
 # Get unique portfolio IDs
 portfolio_ids = df['Portfolio_ID'].unique()

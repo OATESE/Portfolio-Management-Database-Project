@@ -1,12 +1,12 @@
-CREATE TABLE [PRACTICE2].[Clients] (
+CREATE TABLE [CW1].[Clients] (
     [Client_ID] INT IDENTITY(1,1) NOT NULL,
     [Client_Name] VARCHAR(255) NOT NULL,
-    [Client_Address] VARCHAR(255),
+    [Client_Email] VARCHAR(255),
     [Client_Number] VARCHAR(50),
     CONSTRAINT [pk_clients] PRIMARY KEY ([Client_ID])
 );
 
-CREATE TABLE [PRACTICE2].[Portfolios] (
+CREATE TABLE [CW1].[Portfolios] (
     [Portfolio_ID] INT IDENTITY(1,1) NOT NULL,
     [Client_ID] INT NOT NULL,
     [Portfolio_Name] VARCHAR(255) NOT NULL,
@@ -16,29 +16,29 @@ CREATE TABLE [PRACTICE2].[Portfolios] (
     CONSTRAINT [pk_portfolios] PRIMARY KEY ([Portfolio_ID])
 );
 
-CREATE TABLE [PRACTICE2].[Assets] (
+CREATE TABLE [CW1].[Assets] (
     [AssetID] INT IDENTITY(1,1) NOT NULL,
     [Asset_Type] VARCHAR(50) NOT NULL,
-    [Symbol] VARCHAR(10) NOT NULL,
+    [AssetSymbol] VARCHAR(10) NOT NULL,
     [Asset_Name] VARCHAR(100),
     [Industry] VARCHAR(100),
-    CONSTRAINT [pk_assets] PRIMARY KEY ([AssetID])
+    CONSTRAINT [pk_assets] PRIMARY KEY ([AssetSymbol])
 );
 
-CREATE TABLE [PRACTICE2].[Positions] (
+CREATE TABLE [CW1].[Positions] (
     [Position_ID] INT IDENTITY(1,1) NOT NULL,
     [Portfolio_ID] INT NOT NULL,
-    [Asset_ID] INT NOT NULL,
+    [Asset_Symbol] VARCHAR(10) NOT NULL,
     [Quantity] DECIMAL(19,4) NOT NULL,
     [PurchaseDate] DATE NOT NULL,
-    [PurchasePrice] DECIMAL(19,4) NOT NULL,
-    [CurrentPrice] DECIMAL(19,4) NOT NULL,
+    [PurchasePrice] DECIMAL(19,4) NULL,
+    [CurrentPrice] DECIMAL(19,4) NULL,
     CONSTRAINT [pk_positions] PRIMARY KEY ([Position_ID])
 );
 
-CREATE TABLE [PRACTICE2].[Prices] (
+CREATE TABLE [CW1].[Prices] (
     [PriceID] INT IDENTITY(1,1) NOT NULL,
-    [Asset_ID] INT NOT NULL,
+    [Asset_Symbol] VARCHAR(10) NOT NULL,
     [Date] DATE NOT NULL,
     [Price_Open] DECIMAL(19,4) NOT NULL,
     [Price_Close] DECIMAL(19,4) NOT NULL,

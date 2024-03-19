@@ -1,4 +1,4 @@
-INSERT INTO [PRACTICE3].[Clients] (Client_Name, Client_Address, Client_Number)
+INSERT INTO [CW1] . [Clients] (Client_Name, Client_Email, Client_Number)
 VALUES 
 ('John Doe', 'john.doe@email.com', '555-0101'),
 ('Jane Smith', 'jane.smith@email.com', '555-0202'),
