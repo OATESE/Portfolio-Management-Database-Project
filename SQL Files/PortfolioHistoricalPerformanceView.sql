@@ -2,6 +2,7 @@
 CREATE OR ALTER VIEW [CW1].[PortfolioHistoricalPerformanceView] AS
 SELECT
     p.Portfolio_ID,
+    p.Portfolio_Name,
     pr.Date,
     SUM(CASE WHEN pos.PurchaseDate <= pr.Date THEN pos.Quantity * pr.Price_Close ELSE 0 END) AS PortfolioValue,
     ISNULL(SUM(CASE WHEN pos.PurchaseDate <= pr.Date THEN pos.Quantity * pos.PurchasePrice END), 0) AS CapitalInvested,
@@ -18,5 +19,5 @@ JOIN
 JOIN
     [CW1].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
 GROUP BY
-    p.Portfolio_ID, pr.Date;
+    p.Portfolio_ID,p.Portfolio_Name, pr.Date;
 
