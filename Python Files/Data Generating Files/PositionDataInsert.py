@@ -42,10 +42,9 @@ def generate_positions(client_portfolio_dict, asset_symbols, start_date, end_dat
 
 # Function to convert positions to a single SQL insert statement
 def positions_to_insert_sql(positions, table_name, schema_name='dbo'):
-    insert_stmt = f"INSERT INTO [{schema_name}].[{table_name}] (Portfolio_ID, Client_ID, Asset_Symbol, Quantity, PurchaseDate) VALUES "
+    insert_stmt = f"INSERT INTO [{schema_name}].[{table_name}] (Portfolio_ID, Asset_Symbol, Quantity, PurchaseDate) VALUES "
     values_list = ["(" + ', '.join([
                     str(position[0]),  # Portfolio_ID
-                    str(position[1]),  # Client_ID
                     f"'{position[2]}'",  # Asset_Symbol
                     str(position[3]),  # Quantity
                     f"'{position[4].strftime('%Y-%m-%d')}'"  # PurchaseDate
