@@ -1,4 +1,5 @@
-CREATE OR ALTER VIEW [PRACTICE3].[AssetAllocationView2] AS
+--Asset Allocation View
+CREATE OR ALTER VIEW [CW1].[AssetAllocationView2] AS
 WITH PortfolioAssetValues AS (
     SELECT
         p.Portfolio_ID,
@@ -6,10 +7,10 @@ WITH PortfolioAssetValues AS (
         a.Asset_Type,
         SUM(pos.Quantity * pr.Price_Close) AS Value
     FROM
-        [PRACTICE3].[Portfolios] p
-    JOIN [PRACTICE3].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
-    JOIN [PRACTICE3].[Assets] a ON pos.Asset_Symbol = a.AssetSymbol
-    JOIN [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
+        [CW1].[Portfolios] p
+    JOIN [CW1].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
+    JOIN [CW1].[Assets] a ON pos.Asset_Symbol = a.AssetSymbol
+    JOIN [CW1].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
     GROUP BY p.Portfolio_ID, pr.Date, a.Asset_Type
 ),
 PortfolioTotalValues AS (
