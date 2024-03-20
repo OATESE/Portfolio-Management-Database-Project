@@ -1,6 +1,12 @@
-SELECT phpv.Portfolio_ID, phpv.Date, phpv.PortfolioValue, phpv.CapitalInvested, phpv.ROI
-FROM [CW1].[PortfolioHistoricalPerformanceView] phpv
-JOIN [CW1].[Portfolios] p ON phpv.Portfolio_ID = p.Portfolio_ID
-JOIN [CW1].[Clients] c ON p.Client_ID = c.Client_ID
-WHERE c.Client_Name = 'Alex Johnson'
-ORDER BY phpv.Portfolio_ID, phpv.Date;
+-- Check contents of the Clients table
+SELECT TOP 10 * FROM [CW1].[Clients];
+
+-- Check contents of the Portfolios table
+SELECT TOP 10 * FROM [CW1].[Portfolios];
+
+-- Check contents of the Positions table
+SELECT TOP 10 * FROM [CW1].[Positions];
+
+-- Check contents of the Prices table
+SELECT TOP 10 * FROM [CW1].[Prices];
+
