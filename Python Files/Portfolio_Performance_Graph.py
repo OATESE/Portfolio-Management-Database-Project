@@ -60,8 +60,8 @@ try:
         plt.figure(figsize=(14, 7))
 
         # Plot Capital Invested and Portfolio Value
-        plt.plot(portfolio_df['Date'], portfolio_df['CapitalInvested'], label='Capital Invested', marker='o')
-        plt.plot(portfolio_df['Date'], portfolio_df['PortfolioValue'], label='Portfolio Value', marker='x')
+        plt.plot(portfolio_df['Date'], portfolio_df['CapitalInvested'], label='Capital Invested')
+        plt.plot(portfolio_df['Date'], portfolio_df['PortfolioValue'], label='Portfolio Value')
 
         # Customizing the plot
         plt.title(f"{portfolio_name} (ID: {portfolio_id}): Capital Invested vs Portfolio Value Over Time")
