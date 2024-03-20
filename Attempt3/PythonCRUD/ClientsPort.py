@@ -28,13 +28,13 @@ WITH PortfolioInitialValues AS (
         p.Portfolio_ID,
         MIN(pr.Date) AS Init_Date
     FROM
-        [PRACTICE3].[Clients] c
+        [CW1].[Clients] c
     JOIN
-        [PRACTICE3].[Portfolios] p ON c.Client_ID = p.Client_ID
+        [CW1].[Portfolios] p ON c.Client_ID = p.Client_ID
     JOIN
-        [PRACTICE3].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
+        [CW1].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
     JOIN
-        [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
+        [CW1].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
     WHERE
         c.Client_Name = '{client_name}'
     GROUP BY
@@ -47,13 +47,13 @@ PortfolioCurrentValues AS (
         MAX(pr.Date) AS Latest_Date,
         SUM(pos.Quantity * pr.Price_Close) AS Current_Value
     FROM
-        [PRACTICE3].[Clients] c
+        [CW1].[Clients] c
     JOIN
-        [PRACTICE3].[Portfolios] p ON c.Client_ID = p.Client_ID
+        [CW1].[Portfolios] p ON c.Client_ID = p.Client_ID
     JOIN
-        [PRACTICE3].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
+        [CW1].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
     JOIN
-        [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
+        [CW1].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
     WHERE
         c.Client_Name = '{client_name}'
     GROUP BY
@@ -66,8 +66,8 @@ SELECT
     cv.Current_Value,
     piv.Init_Date,
     (SELECT SUM(pos.Quantity * pr.Price_Close)
-     FROM [PRACTICE3].[Positions] pos
-     JOIN [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol AND pr.Date = piv.Init_Date
+     FROM [CW1].[Positions] pos
+     JOIN [CW1].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol AND pr.Date = piv.Init_Date
      WHERE pos.Portfolio_ID = cv.Portfolio_ID) AS Initial_Value
 FROM
     PortfolioCurrentValues cv

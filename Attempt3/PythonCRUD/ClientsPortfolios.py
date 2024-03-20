@@ -34,13 +34,13 @@ WITH PortfolioValues AS (
         SUM(pos.Quantity * pr.Price_Close) AS Total_Value,
         ROW_NUMBER() OVER(PARTITION BY p.Portfolio_ID ORDER BY pr.Date DESC) AS rn
     FROM
-        [PRACTICE3].[Clients] c
+        [CW1].[Clients] c
     JOIN
-        [PRACTICE3].[Portfolios] p ON c.Client_ID = p.Client_ID
+        [CW1].[Portfolios] p ON c.Client_ID = p.Client_ID
     JOIN
-        [PRACTICE3].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
+        [CW1].[Positions] pos ON p.Portfolio_ID = pos.Portfolio_ID
     JOIN
-        [PRACTICE3].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
+        [CW1].[Prices] pr ON pos.Asset_Symbol = pr.Asset_Symbol
     WHERE
         c.Client_Name = '{client_name}'
     GROUP BY
