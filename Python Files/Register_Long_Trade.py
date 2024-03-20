@@ -36,7 +36,7 @@ def create_position(conn_str, portfolio_id, asset_symbol, quantity, purchase_dat
         print(f"An error occurred: {e}")
 
 # Trade details
-portfolio_id = 1  # The ID of the portfolio where the position will be added
+portfolio_id = 2  # The ID of the portfolio where the position will be added
 asset_symbol = 'AAPL'  # Symbol for the asset being traded
 quantity = 10  # Number of units being traded
 purchase_price = 150.00  # Price at which the units were bought
