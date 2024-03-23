@@ -26,6 +26,6 @@ These are two files that i used to populate the prices and position tables as th
 ### [Insert Initial Price Data](Data%20Generating%20Files/PositionDataInsert.py)  
 - This script uses the yfinance api to download historical prices for a given set of asset symbols over a specified date range. It then Prints an insert statement for each asset symbol so that the the sql data insert query can be easily copied rather than writing several thousands of lines manualy. I found that this is more effective especially when using several asset symbols (tickers) to run this in a jupyter notebook rather than vscode vscode output in terminal is limited. 
 
-### [Insert Initial Positions] (Data%20Generating%20Files/PositionDataInsert.py)
+### [Insert Initial Positions](Data%20Generating%20Files/PositionDataInsert.py)
 - This script generates insert statement for randomly generate positions for a set amount of portfolios. The amount of positions to be generated over a given timeframe can be changed. 
 
