@@ -48,14 +48,3 @@ Contains the stored procedure. The stored procudere is needed to fill in asset p
 ### Triggers.sql
 Defines the triggers used to auto assign the purchasing price based on the date of the position and the closing price of the asset that day.
 
-## Usage
-
-To set up the database:
-
-1. Execute `CreateSchema.sql` to establish the database schema.
-2. Run `CreateTables.sql` to create all necessary tables.
-3. Apply `Constraints_and_FKeys.sql` to define the data integrity rules.
-4. Populate the tables with initial data by running `InitialDataInserts.sql`, followed by the insert scripts in the following order: `InsertClients.sql`, `InsertPortfolios.sql`, `InsertPositions.sql`, and `InsertPrices.sql`.
-5. Set up the views by executing `AssetAllocationView.sql` and `PortfolioHistoricalPerformanceView.sql`.
-6. Create stored procedures with `StoredProcedures.sql` and set up any required triggers with `Triggers.sql`.
-7. Use `ExecuteStoredProcedure.sql` as a template for running stored procedures within your application or for testing purposes.
