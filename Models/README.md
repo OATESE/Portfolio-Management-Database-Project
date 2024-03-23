@@ -5,7 +5,7 @@ The following files are contained in this folder:
 3.  Normalisation table.
 
 
-# ERD
+# [ERD](./DATABASE%20ERD%20Diagram.png)
 Here's the cardinality and optionality for both sides of each relationship in the ERD:
 
 ## Clients to Portfolios:
@@ -24,7 +24,7 @@ Here's the cardinality and optionality for both sides of each relationship in th
 - **Assets side**: One-to-Many (1:M), Optional. An asset must be have at one or many price records (over different dates).
 - **Prices side**: Many-to-One (M:1), Mandatory. A price record must be associated with exactly one asset.
 
-# Use Case Diagram 
+# [Use Case Diagram](./Use%20case%20diagram.png)
 
 ## Actors
 - **Financial Advisor**: A professional who is in the client facing role in the investement company and offers the companies services to clients.
@@ -43,7 +43,7 @@ Here's the cardinality and optionality for both sides of each relationship in th
 - **Perform System Maintenance**: Undertaking technical tasks to ensure the system is running correctly (System Administrators).
 
 
-# Database Normalization Process
+# [Database Normalization Process](./Normalisation_Table.md)
 
 ## Unnormalized Form (UNF)
 - Contains all attributes as a single table.
