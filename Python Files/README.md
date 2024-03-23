@@ -23,7 +23,7 @@ These scripts demonstrate the ability to perform Create, Read, Update, and Delet
 ## [Data Generating Files](./Data Generating Files)
 These are two files that i used to populate the prices and position tables as these would require a much larger amount of initial rows than what would be feasible manualy. I did not choose to do this with the pyodbc driver as i needed data in the tables before i was working on that part of the project and they are less to illustrate the business case but more to facilitate making the project. 
 
-### [Insert Initial Price Data](./Data Generating Files/PricesDataInsert.py)  
+### [Insert Initial Price Data](Python Files/Data Generating Files/PositionDataInsert.py)  
 - This script uses the yfinance api to download historical prices for a given set of asset symbols over a specified date range. It then Prints an insert statement for each asset symbol so that the the sql data insert query can be easily copied rather than writing several thousands of lines manualy. I found that this is more effective especially when using several asset symbols (tickers) to run this in a jupyter notebook rather than vscode vscode output in terminal is limited. 
 
 ### [Insert Initial Positions] (./Data Generating Files/PositionDataInsert.py)
