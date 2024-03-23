@@ -17,10 +17,10 @@ This directory contains a series of SQL scripts used to set up the database sche
 ### Initial Data Inserts
 This folder contains files that populate the database with initial data necessary for the application to function properly. It should be executed after all tables have been created and before the application is used for the first time.
 
-- [InsertClients.sql](./Data%20Generating%20Files/InsertClients.sql) - Inserts records into the `Clients` table.
-- [InsertPortfolios.sql](./Data%20Generating%20Files/InsertPortfolios.sql) - Populates the `Portfolios` table.
-- [InsertPositions.sql](./Data%20Generating%20Files/InsertPositions.sql) - Provides initial asset positions.
-- [InsertPrices.sql](./Data%20Generating%20Files/InsertPrices.sql) - Contains historical price data.
+- [InsertClients.sql](./Initial%20Data%20Inserts/InsertClients.sql) - Inserts records into the `Clients` table.
+- [InsertPortfolios.sql](./Initial%20Data%20Inserts/InsertPortfolios.sql) - Populates the `Portfolios` table.
+- [InsertPositions.sql](./Initial%20Data%20Inserts/InsertPositions.sql) - Provides initial asset positions.
+- [InsertPrices.sql](./Initial%20Data%20Inserts/InsertPrices.sql) - Contains historical price data.
 
 
 
