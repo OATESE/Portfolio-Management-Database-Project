@@ -5,7 +5,7 @@
 | Client_Email             | Client_Email          | Client_Email          | Client_Email          |            |
 | Client_Number            | Client_Number         | Client_Number         | Client_Number         |            |
 |    (Portfolio_ID         |                       |                       |                       |            |
-|    Portfolio_Name        | _Portfolio_ID _       | _Portfolio_ID _       | _Portfolio_ID _       | Portfolios |
+|    Portfolio_Name        | _Portfolio_ID_       | _Portfolio_ID_       | _Portfolio_ID_       | Portfolios |
 |    Portfolio_Description | Client_ID             | Client_ID             | Client_ID             |            |
 |    Portfolio_Purpose     | Portfolio_Name        | Portfolio_Name        | Portfolio_Name        |            |
 |    Portfolio_Init_Date   | Portfolio_Description | Portfolio_Description | Portfolio_Description |            |
