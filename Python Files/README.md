@@ -21,7 +21,7 @@
 These scripts demonstrate the ability to perform Create, Read, Update, and Delete (CRUD) operations on a financial portfolio database using Python. Each script is to a specific operation relevant to managing a client's financial portfolio.
 
 ## Data Generating Files
-These are two files that i used to populate the prices and position tables as these would require a much larger amount of initial rows than what would be feasible manualy. I did not choose to do this with the pyodbc driver as i needed data in the tables before i was working on that part of the project. 
+These are two files that i used to populate the prices and position tables as these would require a much larger amount of initial rows than what would be feasible manualy. I did not choose to do this with the pyodbc driver as i needed data in the tables before i was working on that part of the project and they are less to illustrate the business case but more to facilitate making the project. 
 
 
 ### PricesDataInsert.py  
