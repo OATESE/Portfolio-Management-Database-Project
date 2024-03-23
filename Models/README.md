@@ -9,20 +9,20 @@ The following files are contained in this folder:
 Here's the cardinality and optionality for both sides of each relationship in the ERD:
 
 ## Clients to Portfolios:
-Clients side: One-to-Many (1:M), Optional. A client can have zero (optional) or many portfolios.
-Portfolios side: Many-to-One (M:1), Mandatory. A portfolio must be associated with exactly one client.
+- **Clients side**: One-to-Many (1:M), Optional. A client can have zero (optional) or many portfolios.
+- **Portfolios side**: Many-to-One (M:1), Mandatory. A portfolio must be associated with exactly one client.
 
 ## Portfolios to Positions:
-Portfolios side: One-to-Many (1:M), Optional. A portfolio must be associated with one or many positions.
-Positions side: Many-to-One (M:1), Mandatory. A position must be associated with exactly one portfolio.
+- **Portfolios side**: One-to-Many (1:M), Optional. A portfolio must be associated with one or many positions.
+- **Positions side**: Many-to-One (M:1), Mandatory. A position must be associated with exactly one portfolio.
 
 ## Assets to Positions:
-Assets side: One-to-Many (1:M), Optional. An asset can have zero (optional) or many positions (across all portfolios). 
-Positions side: Many-to-One (M:1), Mandatory. A position must be associated with exactly one asset.
+- **Assets side**: One-to-Many (1:M), Optional. An asset can have zero (optional) or many positions (across all portfolios).
+- **Positions side**: Many-to-One (M:1), Mandatory. A position must be associated with exactly one asset.
 
 ## Assets to Prices:
-Assets side: One-to-Many (1:M), Optional. An asset must be have at one or many price records (over different dates).
-Prices side: Many-to-One (M:1), Mandatory. A price record must be associated with exactly one asset.
+- **Assets side**: One-to-Many (1:M), Optional. An asset must be have at one or many price records (over different dates).
+- **Prices side**: Many-to-One (M:1), Mandatory. A price record must be associated with exactly one asset.
 
 # Use Case Diagram 
 
