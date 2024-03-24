@@ -2,7 +2,7 @@
 The following files are contained in this folder:
 1.  ERD
 2.  UML Use Case Diagram
-3.  Normalisation table.
+3.  Logical Database Design
 
 
 # [ERD](./DATABASE%20ERD%20Diagram.png)
@@ -43,29 +43,7 @@ Here's the cardinality and optionality for both sides of each relationship in th
 - **Perform System Maintenance**: Undertaking technical tasks to ensure the system is running correctly (System Administrators).
 
 
-# [Database Normalization Process](./Normalisation_Table.md)
+# [Logical Database Design](./Logical_Database_design.md)
 
-## Unnormalized Form (UNF)
-- Contains all attributes as a single table.
-- Repeating groups are present, and there is no separation of concerns.
+Markdown document of how the database design has been checked against normalisation.
 
-## First Normal Form (1NF)
-- Removes duplicate columns from the same table.
-- Ensures each table has a primary key.
-- All attributes are atomic (no multi-valued attributes).
-
-## Second Normal Form (2NF)
-- Achieved by taking the 1NF data and ensuring that all non-key attributes are fully functional dependent on the primary key.
-- This involves removing subsets of data that apply to multiple rows of a table and placing them in separate tables.
-- Creates a relationship between these new tables and their predecessors through the use of foreign keys.
-
-## Third Normal Form (3NF)
-- Achieved by taking the 2NF data and ensuring that all its attributes are not only fully functionally dependent on the primary key but also only on the primary key (removing transitive dependency).
-- Any non-key attribute must not provide a fact about another non-key attribute.
-
-## Final Tables
-- **Clients**: Stores client-specific information with `Client_ID` as the primary key.
-- **Portfolios**: Stores data related to portfolios, linked to clients through `Client_ID`.
-- **Assets**: Contains asset-related details, including a unique asset symbol used across other tables.
-- **Position**: Records information about the client's positions within portfolios, including purchase details.
-- **Prices**: Maintains price data related to each asset, with dates and values for various market prices.
