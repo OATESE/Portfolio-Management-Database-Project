@@ -4,7 +4,7 @@ import pyodbc
 server = 'tcp:mcruebs04.isad.isadroot.ex.ac.uk'
 database = 'BEM2040_EOATES'
 username = 'EOates'
-password = 'DtyV133*831*'
+password = 
 
 # Connect to the database
 connection_string = f'''
